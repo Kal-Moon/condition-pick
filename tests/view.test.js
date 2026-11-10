@@ -69,3 +69,13 @@ test('failed placement exposes an explicit fallback, and unsafe links are omitte
   assert.match(doc.getElementById('notice').textContent, /표시 실패/);
   dom.window.close();
 });
+test('editing shipping does not reset a display location chosen before applying it', async () => {
+  const { dom, doc } = await setup('inline', { state: model.initialState() });
+  doc.getElementById('mode').value = 'panel';
+  doc.getElementById('mode').dispatchEvent(new dom.window.Event('change'));
+  doc.getElementById('shipping').checked = false;
+  doc.getElementById('shipping').dispatchEvent(new dom.window.Event('change'));
+  await tick();
+  assert.equal(doc.getElementById('mode').value, 'panel');
+  dom.window.close();
+});

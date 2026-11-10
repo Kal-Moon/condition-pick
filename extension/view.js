@@ -8,6 +8,7 @@ $('surface-label').textContent = labels[surface] || labels.popup;
 let sourceTabId = params.has('source') ? Number(params.get('source')) : null;
 let busy = false;
 let lastRevision = -1;
+let modeDraft = null;
 async function request(message) {
   const response = await chrome.runtime.sendMessage({ ...message, sourceTabId });
   if (!response?.ok) throw new Error(response?.error || '조건픽 연결을 확인하지 못했습니다.');
@@ -21,7 +22,7 @@ function render(value) {
   const state = readState(value);
   if (state.revision < lastRevision) return;
   lastRevision = state.revision;
-  $('mode').value = state.preferredMode;
+  $('mode').value = modeDraft ?? state.preferredMode;
   $('shipping').checked = state.common.includeShipping;
   if (document.activeElement !== $('budget')) $('budget').value = state.common.budget ?? '';
   $('price-basis').textContent = state.common.includeShipping
@@ -87,10 +88,14 @@ async function open(mode, persist) {
   try {
     const response = await request({ type: 'CP_OPEN', mode, persist });
     if (response.fallback) notice(response.error, true);
-    else notice('표시 위치를 열었습니다. 조합과 샘플 결과는 유지됩니다.');
+    else {
+      if (persist && modeDraft === mode) modeDraft = null;
+      notice('표시 위치를 열었습니다. 조합과 샘플 결과는 유지됩니다.');
+    }
   } catch (error) { notice(error.message, true); }
   finally { busy = false; $('open').disabled = false; }
 }
+$('mode').addEventListener('change', () => { modeDraft = $('mode').value; });
 $('open').addEventListener('click', () => open($('mode').value, true));
 $('fallback').addEventListener('click', () => open('tab', false));
 $('shipping').addEventListener('change', () => update({ type: 'shipping', value: $('shipping').checked }));
