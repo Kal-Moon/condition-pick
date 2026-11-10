@@ -3,29 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>조건픽 · 표시 시제품</title>
+  <title>??? ? ?? ?? ???</title>
   <link rel="stylesheet" href="view.css">
   <script type="module" src="view.js"></script>
 </head>
 <body>
   <main>
-    <header><div><h1>조건픽 <span>ConditionPick</span></h1><p id="surface-label"></p></div><button id="close" type="button" hidden>닫기</button></header>
-    <p class="prototype">표시 시제품 · 실제 옵션 담기·검색·실시간 가격은 아직 연결되지 않았습니다.</p>
+    <header><div><h1>??? <span>ConditionPick</span></h1><p id="surface-label"></p></div><button id="close" type="button" hidden>??</button></header>
+    <p class="prototype">?? ??? ? ??? ??? ???? ?? ??? ??? ??? ?? ?????. ??? ?? ??? ??? ?? ?????.</p>
     <section aria-labelledby="display-title">
-      <h2 id="display-title">결과 표시 위치</h2>
-      <div class="row"><select id="mode" aria-label="결과 표시 위치"><option value="inline">다나와 페이지 안</option><option value="panel">오른쪽 패널</option><option value="tab">조건픽 별도 탭</option></select><button id="open" class="primary" type="button">이 위치로 보기</button></div>
-      <p class="hint">오른쪽 패널은 이 시제품에서 페이지 위에 열립니다.</p>
+      <h2 id="display-title">?? ?? ??</h2>
+      <div class="row"><select id="mode" aria-label="?? ?? ??"><option value="inline">??? ??? ?</option><option value="panel">??? ??</option><option value="tab">??? ?? ?</option></select><button id="open" class="primary" type="button">? ??? ??</button></div>
+      <p class="hint">??? ??? ? ????? ??? ?? ????.</p>
     </section>
     <section aria-labelledby="common-title">
-      <h2 id="common-title">공통 조건</h2>
-      <label for="budget">예산 (원)</label><div class="row"><input id="budget" type="number" min="0" step="1" inputmode="numeric" placeholder="예: 1500000"><button id="save-budget" type="button">예산 저장</button></div>
-      <label class="check"><input id="shipping" type="checkbox" checked>배송비 포함</label>
+      <h2 id="common-title">?? ??</h2>
+      <label for="budget">?? (?)</label><div class="row"><input id="budget" type="number" min="0" step="1" inputmode="numeric" placeholder="?: 1500000"><button id="save-budget" type="button">?? ??</button></div>
+      <label class="check"><input id="shipping" type="checkbox" checked>??? ??</label>
       <p id="price-basis" class="hint"></p>
+      <p class="hint">?? ??? ??? ??? ?? ?? ?? ??? ??? ? ?????. ???? ?? ????? ????.</p>
     </section>
-    <section aria-labelledby="groups-title"><h2 id="groups-title">조합 선택 예시</h2><div id="groups"></div></section>
-    <section aria-labelledby="results-title"><div class="row between"><h2 id="results-title">표시 확인용 결과</h2><button id="sample" type="button">샘플 표시</button></div><p class="hint">샘플은 이전 확인 시점의 상품 링크입니다. 현재 조건으로 검색하거나 예산을 판정한 결과가 아닙니다.</p><div id="results"></div></section>
+    <section aria-labelledby="capture-title">
+      <h2 id="capture-title">?? ??? ?? ??</h2>
+      <div class="row"><input id="capture-name" type="text" maxlength="80" aria-label="? ?? ??" placeholder="?? ?? ? ?? ??"><button id="capture" class="primary" type="button" data-page-operation>?? ?? ??</button></div>
+      <p class="hint">?? ?? ??? ??? ?????. ?? ??? ???? ??? ??? ?????.</p>
+    </section>
+    <section aria-labelledby="groups-title"><h2 id="groups-title">? ??</h2><div id="groups"></div></section>
+    <section id="applied-section" hidden aria-labelledby="applied-title"><h2 id="applied-title">??? ?? ??</h2><p id="applied"></p><p class="hint">?? ?? ????, ?? ?? ??? ?? ??? ??? ????.</p></section>
+    <section aria-labelledby="search-title"><h2 id="search-title">??? ?? ??</h2>
+      <div class="row"><button id="search" class="primary" type="button">??? ?? ??</button><button id="stop-search" type="button" hidden>?? ??</button></div>
+      <p class="hint">?? ?? ??? ???? ?????. ?? ??? ?? ??? ?????. ?? ?? ?? ???? ??? ?????.</p>
+      <p id="search-status" role="status" aria-live="polite">?? ???? ?????.</p>
+      <p id="search-stale" class="prototype" hidden>??? ???????. ??? ?? ?? ??? ?????. ?? ??? ???.</p>
+      <div id="search-progress"></div>
+    </section>
+    <section aria-labelledby="results-title"><div class="row between"><h2 id="results-title">?? ??</h2><button id="sample" type="button">?? ??</button></div>
+      <div class="row"><select id="result-group" aria-label="?? ??"><option value="all">??? ?? ??</option></select><select id="result-sort" aria-label="?? ??"><option value="price">?? ?? ???</option><option value="source">?? ??</option></select></div>
+      <p id="result-basis" class="hint">??? ?? ???? ??? ??? ????.</p><p id="result-count" class="hint"></p><div id="results"></div>
+    </section>
     <div id="notice" role="status" aria-live="polite"></div>
-    <button id="fallback" type="button" hidden>설정을 유지하고 별도 탭에서 보기</button>
+    <button id="fallback" type="button" hidden>??? ???? ?? ??? ??</button>
   </main>
 </body>
 </html>

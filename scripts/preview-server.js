@@ -3,12 +3,17 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
-const allowed = new Set(['view.html', 'view.css', 'view.js', 'model.js', 'background.js', 'content.js']);
-const fixture = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>조건픽 표시 검증 · 다나와 구조의 로컬 예시</title>
+const allowed = new Set(['view.html', 'view.css', 'view.js', 'model.js', 'search-model.js', 'background.js', 'danawa.js', 'collector.js', 'content.js']);
+const fixture = `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>??? ?? ?? ? ??? ??? ?? ??</title>
 <style>body{font:15px/1.6 system-ui;margin:0;background:#f1f4f8;color:#202d42}header,main{max-width:1080px;margin:auto;padding:24px}header{background:#fff}h1{font-size:24px;margin:0}section{background:#fff;padding:20px;border:1px solid #d4ddea;border-radius:10px;margin:16px 0}h2{font-size:18px}label{margin-right:16px}#productListArea article{padding:16px;border-top:1px solid #d4ddea}a{color:#164f9e}</style>
-<header><h1>조건픽 표시 검증</h1><p>다나와의 구조를 본뜬 로컬 검증 페이지입니다. 실제 다나와 사이트나 설치된 확장 프로그램이 아닙니다.</p></header>
-<main id="DnwListContents"><section id="original-filters"><h2>원래 사이트의 옵션 영역</h2><label><input id="original-cpu" type="checkbox" checked>코어i5</label><label><input type="checkbox" checked>RTX5060</label><label><input type="checkbox" checked>32GB</label></section>
-<section id="productListArea"><h2>원래 사이트의 상품 목록</h2><article>원래 상품 목록 ① · 조건픽을 열고 닫아도 유지</article><article>원래 상품 목록 ② · 기존 링크와 옵션 유지</article></section></main>
+<header><h1>??? ?? ??</h1><p>???? ??? ?? ?? ?? ??????. ?? ??? ???? ??? ?? ????? ????.</p></header>
+<main id="DnwListContents"><section id="original-filters"><h2>????</h2>
+<div><div><div>CPU ??</div><div><div><button id="attr-cpu-5-0" role="checkbox" aria-checked="true"></button><label for="attr-cpu-5-0">??i5</label></div><div><button id="attr-cpu-7-1" role="checkbox" aria-checked="false"></button><label for="attr-cpu-7-1">??i7</label></div></div></div></div>
+<div><div><div>GPU ??</div><div><div><button id="attr-gpu-5060-0" role="checkbox" aria-checked="true"></button><label for="attr-gpu-5060-0">RTX5060</label></div></div></div></div>
+<div><div><div>?</div><div><div><button id="attr-ram-32-0" role="checkbox" aria-checked="true"></button><label for="attr-ram-32-0">32GB</label></div></div></div></div>
+<div><div>???</div><div><input aria-label="?? ??" placeholder="?? ??"><input aria-label="?? ??" placeholder="?? ??"><button>??</button></div></div></section>
+<label>?????<button id="preview-shipping" role="switch" aria-checked="false">OFF</button></label>
+<section id="productListArea"><h2>?? ???? ?? ??</h2><article>?? ?? ?? ? ? ???? ?? ??? ??</article><article>?? ?? ?? ? ? ?? ??? ?? ??</article></section></main>
 <script type="module" src="/preview-host.js"></script></html>`;
 const mime = { '.js': 'text/javascript; charset=utf-8', '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8' };
 const port = Number(new URL(import.meta.url).searchParams.get('port')) || 4173;

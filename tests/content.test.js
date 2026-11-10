@@ -4,8 +4,8 @@ import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 const source = readFileSync(new URL('../extension/content.js', import.meta.url), 'utf8');
 function setup(withAnchor = true) {
-  const html = '<!doctype html><html><body><main id="DnwListContents"><section id="filters"><input type="checkbox" checked>기존 옵션</section>' +
-    (withAnchor ? '<section id="productListArea"><a href="/info/?pcode=1">기존 상품</a></section>' : '') + '</main></body></html>';
+  const html = '<!doctype html><html><body><main id="DnwListContents"><section id="filters"><input type="checkbox" checked>?? ??</section>' +
+    (withAnchor ? '<section id="productListArea"><a href="/info/?pcode=1">?? ??</a></section>' : '') + '</main></body></html>';
   const dom = new JSDOM(html, { url: 'https://prod.danawa.com/list/?cate=112758', runScripts: 'outside-only' });
   const listeners = [];
   const shadows = new WeakMap();

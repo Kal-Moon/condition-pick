@@ -24,6 +24,9 @@ function storage(values, area) {
   };
 }
 function dispatch(listeners, message, sender) {
+  if (listeners === channels.background && message.type === 'CP_SEARCH') {
+    return Promise.resolve({ ok: false, error: '?? ?? ??? ?? ??? ???? ????. ?? ?? ?????? ??? ???.' });
+  }
   return new Promise((resolve, reject) => {
     let handled = false;
     let answered = false;
@@ -56,7 +59,7 @@ globalThis.chrome = {
     async query() { return [sourceTab]; },
     async create(properties) {
       const win = window.open(properties.url, '_blank');
-      if (!win) throw new Error('브라우저에서 검증용 새 탭 열기를 막았습니다.');
+      if (!win) throw new Error('?????? ??? ? ? ??? ?????.');
       const id = nextTab++;
       resultWindows.set(id, win);
       return { id, url: properties.url };
@@ -86,5 +89,11 @@ window.addEventListener('message', async event => {
 });
 await import('/extension/background.js');
 registration = 'content';
+document.querySelectorAll('[role="checkbox"],[role="switch"]').forEach(button => button.addEventListener('click', () => {
+  const value = button.getAttribute('aria-checked') !== 'true';
+  button.setAttribute('aria-checked', String(value));
+  button.textContent = value ? '???' : '?? ? ?';
+}));
+await import('/extension/danawa.js');
 const content = await (await fetch('/extension/content.js')).text();
 new Function('location', 'chrome', content)({ href: sourceUrl }, chrome);

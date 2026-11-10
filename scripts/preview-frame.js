@@ -4,7 +4,7 @@ let nextId = 0;
 globalThis.chrome = {
   runtime: { sendMessage(message) {
     return new Promise((resolve, reject) => {
-      if (!host) { reject(new Error('검증 원본 페이지를 찾지 못했습니다.')); return; }
+      if (!host) { reject(new Error('?? ?? ???? ?? ?????.')); return; }
       const id = ++nextId;
       callbacks.set(id, { resolve, reject });
       host.postMessage({ channel: 'cp-preview-request', id, message }, location.origin);
